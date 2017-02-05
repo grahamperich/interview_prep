@@ -10,7 +10,7 @@ function highestProduct(listOfInts) {
 
   var smallestSoFar = 1;
   var secondSmallestSoFar = 1;
-  debugger;
+  
   
   for (var i = 0; i < listOfInts.length; i++) {
     var int = listOfInts[i];
@@ -22,13 +22,15 @@ function highestProduct(listOfInts) {
     } else if (int > secondLargestSoFar) {
       thirdLargestSoFar = secondLargestSoFar;
       secondLargestSoFar = int;
-    } else if (int > thirdLargestSoFar && int !== 0) {
+    } else if (int > thirdLargestSoFar) {
       thirdLargestSoFar = int;
-    } else if (int < smallestSoFar && int !== 0) {
-      // handle edge case in which there are two large negative numbers
+    } 
+
+    // handle edge case in which there are two large negative numbers
+    if (int < smallestSoFar && int !== 0) {
       secondSmallestSoFar = smallestSoFar;
       smallestSoFar = int;
-    } else if (int < secondSmallestSoFar) {
+    } else if (int < secondSmallestSoFar && int !== 0) {
       secondSmallestSoFar = int;
     }
   }
@@ -43,4 +45,12 @@ function highestProduct(listOfInts) {
   }
 }
 
-var arr = [1,4,5,3,4,6];
+var arr1 = [1,4,5,3,4,6];
+var arr2 = [-2, -6, 4, -3];
+var arr3 = [-3, -6, -8, 0] 
+var arr4 = [-4, -2, -3, -2] 
+highestProduct(arr1) // should return 120
+highestProduct(arr2) // should return 72
+highestProduct(arr3) // should return 0
+highestProduct(arr4) // should return -12
+
