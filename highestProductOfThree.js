@@ -38,11 +38,7 @@ function highestProduct(listOfInts) {
   var bestNegativeProduct = smallestSoFar * secondSmallestSoFar * largestSoFar;
   var bestPositiveProduct = largestSoFar * secondLargestSoFar * thirdLargestSoFar;
 
-  if (bestPositiveProduct > bestNegativeProduct) {
-    return bestPositiveProduct;
-  } else {
-    return bestNegativeProduct;
-  }
+  return Math.max(bestNegativeProduct, bestPositiveProduct)
 }
 
 var arr1 = [1,4,5,3,4,6];

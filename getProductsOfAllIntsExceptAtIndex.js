@@ -8,20 +8,45 @@
 // by calculating:
 //   [7*3*4, 1*3*4, 1*7*4, 1*7*3]
 
+//O(n^2) solution
+
+// function getProduct(ints) {
+//   var solution = [];
+
+//   for (var i = 0; i < ints.length; i++) {
+//     if (i === 0) {
+//       solution.push(ints.slice(1).reduce((a,b) => a*b))
+//     } else if (i === ints.length-1) {
+//       solution.push(ints.slice(0, ints.length-1).reduce((a,b) => a*b))
+//     } else {
+//       var subArrLeft = ints.slice(0, i);
+//       var subArrRight = ints.slice(i+1);
+      
+//       solution.push(subArrRight.reduce((a,b) => a * b) * subArrLeft.reduce((a,b) => a * b));
+//     }
+//   }
+//   return solution;
+// }
+
+// optimal O(n) solution
+
 function getProduct(ints) {
-  var solution = [];
+  var productsOfAllIntsExceptAtIndex = [];
+  
+  var productSoFar = 1;
 
   for (var i = 0; i < ints.length; i++) {
-    if (i === 0) {
-      solution.push(ints.slice(1).reduce((a,b) => a*b))
-    } else if (i === ints.length-1) {
-      solution.push(ints.slice(0, ints.length-1).reduce((a,b) => a*b))
-    } else {
-      var subArrLeft = ints.slice(0, i);
-      var subArrRight = ints.slice(i+1);
-      
-      solution.push(subArrRight.reduce((a,b) => a * b) * subArrLeft.reduce((a,b) => a * b));
-    }
+    productsOfAllIntsExceptAtIndex.push(productSoFar);
+    productSoFar *= ints[i];
   }
-  return solution;
+
+  var productSoFar = 1;
+
+  for (var i = ints.length - 1; i >= 0; i--) {
+    productsOfAllIntsExceptAtIndex[i] *= productSoFar;
+    productSoFar *= ints[i];
+
+  }
+
+  return productsOfAllIntsExceptAtIndex;
 }
