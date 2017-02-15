@@ -14,29 +14,58 @@
 // 1¢, 3¢
 // 2¢, 2¢
 
+// function coinPermutations(targetAmount, denominations) {
+//   var permutations = [];
+
+//   function inner(currentCoin, permutation) {
+//     var total = permutation.length ? permutation.reduce((a,b) => a + b) : 0;
+
+//     if (total === targetAmount) {
+//       permutations.push(permutation.sort());
+//       return;
+//     } else if (total < targetAmount) {
+//       permutation.push(currentCoin);
+
+//       for (var i = 0; i < denominations.length; i++) {
+//         inner(denominations[i], permutation.slice());
+//       }
+//     } 
+//   }
+
+//   denominations.forEach(function(coin) {
+//     inner(coin, []);
+//   });
+
+//   var uniq = new Set(permutations.map(p => JSON.stringify(p)));
+//   return uniq.size;
+
+// }
+
 function coinPermutations(targetAmount, denominations) {
-  var permutations = [];
-
-  function inner(currentCoin, permutation) {
-    var total = permutation.length ? permutation.reduce((a,b) => a + b) : 0;
-
-    if (total === targetAmount) {
-      permutations.push(permutation.sort());
-      return;
-    } else if (total < targetAmount) {
-      permutation.push(currentCoin);
-
-      for (var i = 0; i < denominations.length; i++) {
-        inner(denominations[i], permutation.slice());
-      }
-    } 
+  var waysOfDoingNCents = [];
+  
+  for (var i = 1; i < targetAmount.length; i++) {
+    waysOfDoingNCents[i] = 0;
   }
 
-  denominations.forEach(function(coin) {
-    inner(coin, []);
-  });
+  waysOfDoingNCents[0] = 1;
 
-  var uniq = new Set(permutations.map(p => JSON.stringify(p)));
-  return uniq.size;
+  denominations.forEach(coin => {
+    for (var higherAmount = coin; higherAmount < targetAmount; higherAmount++) {
+      var remainder = higherAmount - coin;
+      waysOfDoingNCents[higherAmount] += waysOfDoingNCents[remainder]
+    }
+  })
 
+  return waysOfDoingNCents[targetAmount];
+  
 }
+
+
+
+
+
+
+
+
+
