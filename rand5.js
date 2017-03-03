@@ -18,3 +18,5 @@ function rand5() {
 
   return num;
 }
+
+rand5();
