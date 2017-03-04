@@ -15,15 +15,15 @@
 class TempTracker {
   constructor(temp) {
     this.temperatures = [temp];
-    this.frequencyMap = {temp: 1}
+    this.frequencyMap = {};
+    this.frequencyMap[temp] = 1;
     this.max = temp;
     this.min = temp;
     this.total = temp;
     this.mean = temp;
     this.mode = temp;
-    this.modeOccurences = 1
+    this.modeOccurences = 1;
   }
-
 
   insert(temp) {
     this.temperatures.push(temp);
