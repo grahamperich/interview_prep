@@ -40,4 +40,4 @@ g.insertRight(2);
 g.right.insertRight(3);
 g.right.right.insertRight(5);
 
-findSecondLargest(tree) // should return 3
+console.log(findSecondLargest(tree)) // should return 3
