@@ -18,6 +18,7 @@ BinaryTreeNode.prototype.insertRight = function(value) {
 };
 
 // function assumes tree is a balanced binary search tree
+// solution runs in O(log n) time 
 function findSecondLargest(tree) {
 
   function inner(node, values) {
