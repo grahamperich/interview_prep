@@ -1,6 +1,6 @@
-// Given a boolean 2D matrix, find the number of islands. A group of connected 1s forms an island. For example, the below matrix contains 5 islands
+// Given a boolean 2D matrix, find the number of islands. A group of connected 1s forms an island. 
 
-// This sample island has 5 islands.
+//For example, the sample matrix belwo ontains 5 islands
 
 // var ocean =[
 // [1, 1, 0, 0, 0],
@@ -10,7 +10,8 @@
 // [1, 0, 1, 0, 1]
 // ]
 
-// My friend got this interview question at Uber so I wanted to see if I could solve it on my own. This solution took me about 80 minutes to create, so I guess I would have failed the uber interview! lol!
+// My friend got this interview question at Uber so I wanted to see if I could solve it on my own. 
+// This solution took me about 80 minutes to create, so I guess I would have failed the uber interview! lol!
 
 var ocean1 =[
 [1, 1, 0, 0, 0],
@@ -64,7 +65,6 @@ function findAllIslands (matrix) {
   function isIsland (currentX, currentY) {
     var currentCoordinate = matrix[currentX][currentY];
 
-    // base case 1: coordinate value is 0
     if (currentCoordinate === 1) {
       // if we haven't already seen this coord in a previous island..
       if (!seenSoFar[currentX][currentY]) {
@@ -98,14 +98,15 @@ function findAllIslands (matrix) {
       var bottomLeftNeighbor = new coord(x - 1, y - 1);
       var bottomRightNeighbor = new coord(x + 1, y - 1);
 
-      neighbors.push(topNeighbor, topRightNeighbor, topLeftNeighbor, leftNeighbor, rightNeighbor, bottomNeighbor, bottomLeftNeighbor, bottomRightNeighbor);
-
-      neighbors.forEach(neighbor => {
+      neighbors
+      .push(topNeighbor, topRightNeighbor, topLeftNeighbor, leftNeighbor, rightNeighbor, bottomNeighbor, bottomLeftNeighbor, bottomRightNeighbor)
+      .forEach(neighbor => {
         if (neighbor.value === 1 && !seenSoFar[neighbor.x][neighbor.y]) {
           seenSoFar[neighbor.x][neighbor.y] = true;
           markNeighbors(neighbor.x, neighbor.y)
         }
-      })
+      });
+
     }
   }
 }
